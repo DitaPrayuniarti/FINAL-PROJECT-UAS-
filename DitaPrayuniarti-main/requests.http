@@ -1,0 +1,143 @@
+### BASE URL
+@baseUrl = https://ditaprayuniarti-production.up.railway.app
+
+### REGISTER
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "nama_pengguna": "admin",
+  "kata_sandi": "admin123",
+  "peran_pengguna": "petugas_keuangan"
+}
+
+### LOGIN
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "nama_pengguna": "admin",
+  "kata_sandi": "admin123"
+}
+
+### Save Token
+@token = {{accessToken}}
+
+### CREATE PIUTANG PELANGGAN
+POST {{baseUrl}}/api/piutang-pelanggan
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nama_pelanggan": "John Doe",
+  "tanggal_faktur": "2023-07-01",
+  "tanggal_jatuh_tempo": "2023-07-15",
+  "jumlah_piutang": 1000,
+  "status_pembayaran": "belum_bayar",
+  "id_pengguna": 1
+}
+
+### GET ALL PIUTANG PELANGGAN
+GET {{baseUrl}}/api/piutang-pelanggan
+Authorization: Bearer {{token}}
+
+### UPDATE PIUTANG PELANGGAN
+PUT {{baseUrl}}/api/piutang-pelanggan/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "status_pembayaran": "sudah_bayar"
+}
+
+### DELETE PIUTANG PELANGGAN
+DELETE {{baseUrl}}/api/piutang-pelanggan/1
+Authorization: Bearer {{token}}
+
+### CREATE PEMBAYARAN PIUTANG
+POST {{baseUrl}}/api/pembayaran-piutang
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id_piutang_pelanggan": 1,
+  "tanggal_pembayaran": "2023-07-10",
+  "jumlah_pembayaran": 1000,
+  "metode_pembayaran": "transfer bank"
+}
+
+### GET ALL PEMBAYARAN PIUTANG
+GET {{baseUrl}}/api/pembayaran-piutang
+Authorization: Bearer {{token}}
+
+### UPDATE PEMBAYARAN PIUTANG
+PUT {{baseUrl}}/api/pembayaran-piutang/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "jumlah_pembayaran": 1200
+}
+
+### DELETE PEMBAYARAN PIUTANG
+DELETE {{baseUrl}}/api/pembayaran-piutang/1
+Authorization: Bearer {{token}}
+
+### CREATE PROYEK
+POST {{baseUrl}}/api/proyek
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nama_proyek": "Proyek A",
+  "tanggal_mulai": "2023-07-01",
+  "tanggal_selesai": "2023-12-01",
+  "anggaran_proyek": 50000,
+  "id_pengguna": 1
+}
+
+### GET ALL PROYEK
+GET {{baseUrl}}/api/proyek
+Authorization: Bearer {{token}}
+
+### UPDATE PROYEK
+PUT {{baseUrl}}/api/proyek/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "anggaran_proyek": 60000
+}
+
+### DELETE PROYEK
+DELETE {{baseUrl}}/api/proyek/1
+Authorization: Bearer {{token}}
+
+### CREATE BIAYA PROYEK
+POST {{baseUrl}}/api/biaya-proyek
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id_proyek": 1,
+  "jenis_biaya": "Biaya Operasional",
+  "jumlah_biaya": 10000,
+  "tanggal_pembayaran": "2023-07-15"
+}
+
+### GET ALL BIAYA PROYEK
+GET {{baseUrl}}/api/biaya-proyek
+Authorization: Bearer {{token}}
+
+### UPDATE BIAYA PROYEK
+PUT {{baseUrl}}/api/biaya-proyek/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "jumlah_biaya": 12000
+}
+
+### DELETE BIAYA PROYEK
+DELETE {{baseUrl}}/api/biaya-proyek/1
+Authorization: Bearer {{token}}
